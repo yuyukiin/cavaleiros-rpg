@@ -9,116 +9,107 @@
     <link rel="shortcut icon" href="favicon.ico?v=3" type="image/x-icon">
     
     <style>
-        /* --- ESTILOS GERAIS DA FICHA --- */
+        /* --- ESTILOS VISUAIS NA TELA (FUNDO ESCURO) --- */
         body {
             background-color: #020b14;
             color: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .sheet-container {
-            max-width: 900px; /* Aumentei um pouco a largura */
+            max-width: 850px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 30px;
             background-color: rgba(10, 21, 37, 0.95);
             border: 2px solid var(--gold);
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            border-radius: 8px;
         }
 
         .sheet-section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 1px solid var(--gold-dim);
+            /* EVITA QUEBRA DE PÁGINA NO MEIO DA SEÇÃO */
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
-        /* Títulos */
-        h1, h3 { color: var(--gold); }
-        label { color: var(--cosmo-cyan); font-weight: bold; margin-right: 10px; }
+        h1, h3 { color: var(--gold); margin-top: 0; }
+        label { color: var(--cosmo-cyan); font-weight: bold; margin-right: 5px; }
+        p.subtitle { color: var(--cosmo-cyan); margin-top: -10px; margin-bottom: 30px; }
 
-        /* Inputs de Linha */
-        .input-group {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
+        /* Inputs na tela */
+        .input-group { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+        
         input[type="text"], input[type="number"] {
-            background: transparent;
-            border: none;
+            background: transparent; border: none;
             border-bottom: 2px solid var(--gold-dim);
-            color: #ffffff;
-            padding: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-            flex-grow: 1;
+            color: #ffffff; padding: 5px; font-family: inherit;
+            font-size: 1rem; flex-grow: 1; margin-right: 15px;
         }
 
-        /* TEXTAREAS GIGANTES - A MUDANÇA PRINCIPAL */
         textarea {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--gold-dim);
-            border-radius: 4px;
-            color: #ffffff;
-            padding: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            margin-top: 10px;
-            resize: vertical; /* Permite arrastar pra aumentar */
-            line-height: 1.5;
+            width: 100%; background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--gold-dim); border-radius: 4px;
+            color: #ffffff; padding: 10px; font-family: inherit;
+            font-size: 1rem; margin-top: 5px; resize: vertical;
         }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--cosmo-cyan);
-            background-color: rgba(0, 234, 255, 0.1);
-        }
+        input:focus, textarea:focus { outline: none; border-color: var(--cosmo-cyan); background-color: rgba(0, 234, 255, 0.1); }
 
-        /* Grid para Atributos */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            text-align: center;
-        }
+        /* Grid de Atributos */
+        .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; text-align: center; }
+        .stat-box { border: 1px solid var(--gold-dim); padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); }
+        .stat-box input { text-align: center; font-size: 1.3rem; width: 100%; border-bottom: none; margin: 0; }
+        .stat-box label { display: block; margin-bottom: 5px; font-size: 0.85rem; }
 
-        .stat-box {
-            border: 1px solid var(--gold-dim);
-            padding: 10px;
-            border-radius: 8px;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .stat-box input { text-align: center; font-size: 1.5rem; width: 100%; border-bottom: none; }
-        .stat-box label { display: block; margin: 0 0 5px 0; font-size: 0.9rem; }
-
-        .print-btn {
-            display: block; width: 100%; padding: 15px;
-            background: var(--gold); color: var(--bg-deep);
-            font-weight: bold; border: none; cursor: pointer;
-            font-size: 1.2rem; margin-top: 30px; text-transform: uppercase;
-        }
+        .print-btn { display: block; width: 100%; padding: 15px; background: var(--gold); color: var(--bg-deep); font-weight: bold; border: none; cursor: pointer; font-size: 1.2rem; margin-top: 20px; text-transform: uppercase; border-radius: 4px; }
         .print-btn:hover { background: #e6c200; }
 
-        /* --- CONFIGURAÇÃO DE IMPRESSÃO --- */
+        /* --- MODO DE IMPRESSÃO ESCURO TOTAL (A MÁGICA) --- */
         @media print {
+            /* 1. ZERA AS MARGENS DA IMPRESSORA PARA NÃO CORTAR */
+            @page {
+                margin: 0mm; /* Essencial para ocupar a folha toda */
+                size: A4 portrait;
+            }
+
+            /* 2. Esconde botões */
             .print-btn, nav { display: none !important; }
-            body {
-                background-color: #020b14 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                color: white !important;
+            
+            /* 3. Força o fundo escuro e cores exatas */
+            html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                background-color: #020b14 !important; /* Fundo preto total */
+                -webkit-print-color-adjust: exact !important; /* Chrome/Edge força cor */
+                print-color-adjust: exact !important; /* Firefox força cor */
             }
+
+            /* 4. Ajusta o container da ficha para preencher a folha sem bordas extras */
             .sheet-container {
-                border: 2px solid #ffd700 !important;
-                background-color: #0a1525 !important;
-                width: 100%; max-width: 100%; margin: 0;
+                width: 100% !important;
+                max-width: none !important;
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                background-color: rgba(10, 21, 37, 1) !important;
+                padding: 20px 40px !important; /* Margem interna para o texto não colar na borda do papel */
+                box-sizing: border-box;
             }
-            input, textarea { color: white !important; border-color: #b8860b !important; }
-            label { color: #00eaff !important; }
-            h1, h3 { color: #ffd700 !important; }
-            /* Quebra de página inteligente se precisar */
-            .page-break { page-break-before: always; }
+
+            /* 5. Garante que as cores de texto se mantenham */
+            h1, h3, label, p.subtitle { color: inherit !important; }
+            input, textarea { color: #ffffff !important; border-color: #b8860b !important; }
+            
+             /* 6. Evita quebrar seções no meio */
+            .sheet-section { break-inside: avoid; }
         }
     </style>
 </head>
@@ -129,35 +120,26 @@
 </nav>
 
 <div class="sheet-container">
-    <header style="text-align: center; margin-bottom: 30px;">
+    <header style="text-align: center; margin-bottom: 20px;">
         <h1 style="margin:0;">Ficha de Cavaleiro</h1>
-        <p style="color: var(--cosmo-cyan);">Cavaleiros de Atena RPG</p>
+        <p class="subtitle">Cavaleiros de Atena RPG</p>
     </header>
 
     <div class="sheet-section">
         <h3>Dados Pessoais</h3>
-        <div class="input-group">
-            <label>Nome:</label>
-            <input type="text">
-            <label style="margin-left: 20px; min-width: auto;">Jogador:</label>
-            <input type="text">
+        <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: flex; align-items: center;"><label>Nome:</label><input type="text"></div>
+            <div style="display: flex; align-items: center;"><label>Jogador:</label><input type="text"></div>
         </div>
-        <div class="input-group">
-            <label>Constelação:</label>
-            <input type="text">
-            <label style="margin-left: 20px; min-width: auto;">Signo:</label>
-            <input type="text">
+        <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: flex; align-items: center;"><label>Constelação:</label><input type="text"></div>
+            <div style="display: flex; align-items: center;"><label>Signo:</label><input type="text"></div>
         </div>
-        <div class="input-group">
-            <label>Escala:</label>
-            <input type="text">
-            <label style="margin-left: 20px; min-width: auto;">XP/Nível:</label>
-            <input type="text">
+        <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: flex; align-items: center;"><label>Escala:</label><input type="text"></div>
+            <div style="display: flex; align-items: center;"><label>XP/Nível:</label><input type="text"></div>
         </div>
-        <div class="input-group">
-            <label>Aparência:</label>
-            <input type="text">
-        </div>
+        <div style="display: flex; align-items: center; margin-top: 10px;"><label>Aparência:</label><input type="text"></div>
     </div>
 
     <div class="sheet-section">
@@ -171,9 +153,9 @@
         </div>
         <br>
         <div class="stats-grid">
-            <div class="stat-box"><label>PV Total</label><input type="number"></div>
+            <div class="stat-box" style="background: rgba(255,215,0,0.1);"><label>PV Total</label><input type="number"></div>
             <div class="stat-box"><label>PV Atual</label><input type="number"></div>
-            <div class="stat-box"><label>PC Total</label><input type="number"></div>
+            <div class="stat-box" style="background: rgba(0,234,255,0.1);"><label>PC Total</label><input type="number"></div>
             <div class="stat-box"><label>PC Atual</label><input type="number"></div>
             <div class="stat-box"><label>Limite Dano</label><input type="number"></div>
         </div>
@@ -181,7 +163,7 @@
 
     <div class="sheet-section">
         <h3>Perícias (Bônus)</h3>
-        <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
             <input type="text" placeholder="Ex: Percepção +2">
             <input type="text" placeholder="Ex: Acrobacia +2">
             <input type="text" placeholder="Ex: Mitologia +2">
@@ -192,30 +174,28 @@
     </div>
 
     <div class="sheet-section">
-        <h3>Talentos (Habilidades Passivas)</h3>
-        <textarea rows="6" placeholder="- Sentidos Avançados: ...&#10;- Aura Expandida: ..."></textarea>
+        <h3>Talentos (Passivos)</h3>
+        <textarea rows="5"></textarea>
     </div>
 
     <div class="sheet-section">
-        <h3>Estilo de Luta & Técnicas Especiais</h3>
-        <textarea rows="12" placeholder="Estilo: Artista Marcial (Nível 1)&#10;&#10;- Técnica 1: Descrição...&#10;- Técnica 2: Descrição...&#10;- Técnica 3: Descrição..."></textarea>
+        <h3>Estilo de Luta & Técnicas</h3>
+        <textarea rows="10"></textarea>
     </div>
 
     <div class="sheet-section">
         <h3>Armadura (Cloth)</h3>
-        <div class="input-group">
-            <label>PA Máximo:</label>
-            <input type="number">
-            <label style="margin-left: 20px; min-width: auto;">PA Atual:</label>
-            <input type="number">
+        <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: flex; align-items: center;"><label>PA Máximo:</label><input type="number"></div>
+            <div style="display: flex; align-items: center;"><label>PA Atual:</label><input type="number"></div>
         </div>
         <label style="display:block; margin-top:10px;">Bônus da Armadura:</label>
-        <textarea rows="4" placeholder="Ex: Robusta (RD 1), Consciência Avançada..."></textarea>
+        <textarea rows="4"></textarea>
     </div>
 
-    <div class="sheet-section page-break">
+    <div class="sheet-section">
         <h3>Inventário & Anotações</h3>
-        <textarea rows="8" placeholder="Itens, aliados, histórico de missões..."></textarea>
+        <textarea rows="6"></textarea>
     </div>
 
     <button class="print-btn" onclick="window.print()">Salvar Ficha (PDF)</button>
