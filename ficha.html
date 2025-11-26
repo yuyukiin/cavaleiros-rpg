@@ -11,12 +11,12 @@
     <style>
         /* --- ESTILOS GERAIS DA FICHA --- */
         body {
-            background-color: #020b14; /* Garante fundo escuro */
+            background-color: #020b14;
             color: #e0f7fa;
         }
 
         .sheet-container {
-            max-width: 800px;
+            max-width: 900px; /* Aumentei um pouco a largura */
             margin: 0 auto;
             padding: 40px;
             background-color: rgba(10, 21, 37, 0.95);
@@ -30,6 +30,11 @@
             border-bottom: 1px solid var(--gold-dim);
         }
 
+        /* Títulos */
+        h1, h3 { color: var(--gold); }
+        label { color: var(--cosmo-cyan); font-weight: bold; margin-right: 10px; }
+
+        /* Inputs de Linha */
         .input-group {
             margin-bottom: 15px;
             display: flex;
@@ -37,36 +42,43 @@
             flex-wrap: wrap;
         }
 
-        label {
-            color: var(--cosmo-cyan);
-            font-weight: bold;
-            margin-right: 10px;
-            min-width: 100px;
-        }
-
-        input[type="text"], input[type="number"], textarea {
+        input[type="text"], input[type="number"] {
             background: transparent;
             border: none;
             border-bottom: 2px solid var(--gold-dim);
-            color: #ffffff; /* Texto branco puro para contraste */
+            color: #ffffff;
             padding: 5px;
             font-family: inherit;
             font-size: 1rem;
             flex-grow: 1;
-            transition: 0.3s;
+        }
+
+        /* TEXTAREAS GIGANTES - A MUDANÇA PRINCIPAL */
+        textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--gold-dim);
+            border-radius: 4px;
+            color: #ffffff;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            margin-top: 10px;
+            resize: vertical; /* Permite arrastar pra aumentar */
+            line-height: 1.5;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-bottom-color: var(--cosmo-cyan);
+            border-color: var(--cosmo-cyan);
             background-color: rgba(0, 234, 255, 0.1);
         }
 
         /* Grid para Atributos */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
             text-align: center;
         }
 
@@ -77,64 +89,36 @@
             background: rgba(0,0,0,0.2);
         }
 
-        .stat-box input {
-            text-align: center;
-            font-size: 1.5rem;
-            width: 100%;
-        }
+        .stat-box input { text-align: center; font-size: 1.5rem; width: 100%; border-bottom: none; }
+        .stat-box label { display: block; margin: 0 0 5px 0; font-size: 0.9rem; }
 
         .print-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: var(--gold);
-            color: var(--bg-deep);
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin-top: 30px;
-            text-transform: uppercase;
+            display: block; width: 100%; padding: 15px;
+            background: var(--gold); color: var(--bg-deep);
+            font-weight: bold; border: none; cursor: pointer;
+            font-size: 1.2rem; margin-top: 30px; text-transform: uppercase;
         }
+        .print-btn:hover { background: #e6c200; }
 
-        .print-btn:hover {
-            background: #e6c200;
-        }
-
-        /* --- CONFIGURAÇÃO DE IMPRESSÃO (A MÁGICA) --- */
+        /* --- CONFIGURAÇÃO DE IMPRESSÃO --- */
         @media print {
-            /* 1. Esconde botões e menus */
             .print-btn, nav { display: none !important; }
-
-            /* 2. FORÇA O NAVEGADOR A USAR CORES DE FUNDO */
             body {
                 background-color: #020b14 !important;
-                -webkit-print-color-adjust: exact !important; /* Chrome/Edge */
-                print-color-adjust: exact !important; /* Firefox */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
                 color: white !important;
             }
-
-            /* 3. Mantém o estilo do container */
             .sheet-container {
                 border: 2px solid #ffd700 !important;
                 background-color: #0a1525 !important;
-                box-shadow: none;
-                margin: 0;
-                width: 100%;
-                max-width: 100%;
+                width: 100%; max-width: 100%; margin: 0;
             }
-
-            /* 4. Garante que textos e linhas fiquem visíveis */
-            input, textarea {
-                color: white !important;
-                border-bottom: 2px solid #b8860b !important;
-            }
-
+            input, textarea { color: white !important; border-color: #b8860b !important; }
             label { color: #00eaff !important; }
             h1, h3 { color: #ffd700 !important; }
-            
-            /* Remove margins extras da página */
-            @page { margin: 0.5cm; }
+            /* Quebra de página inteligente se precisar */
+            .page-break { page-break-before: always; }
         }
     </style>
 </head>
@@ -146,106 +130,92 @@
 
 <div class="sheet-container">
     <header style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: var(--gold); margin:0;">Ficha de Cavaleiro</h1>
+        <h1 style="margin:0;">Ficha de Cavaleiro</h1>
         <p style="color: var(--cosmo-cyan);">Cavaleiros de Atena RPG</p>
     </header>
 
     <div class="sheet-section">
-        <h3 style="color: var(--gold);">Dados Pessoais</h3>
+        <h3>Dados Pessoais</h3>
         <div class="input-group">
             <label>Nome:</label>
-            <input type="text" placeholder="Nome do Personagem">
+            <input type="text">
+            <label style="margin-left: 20px; min-width: auto;">Jogador:</label>
+            <input type="text">
         </div>
         <div class="input-group">
             <label>Constelação:</label>
-            <input type="text" placeholder="Ex: Dragão">
+            <input type="text">
             <label style="margin-left: 20px; min-width: auto;">Signo:</label>
             <input type="text">
         </div>
         <div class="input-group">
-            <label>Jogador:</label>
+            <label>Escala:</label>
             <input type="text">
-            <label style="margin-left: 20px; min-width: auto;">Escala:</label>
-            <input type="text" placeholder="Ex: Bronze">
+            <label style="margin-left: 20px; min-width: auto;">XP/Nível:</label>
+            <input type="text">
         </div>
         <div class="input-group">
             <label>Aparência:</label>
-            <textarea rows="3" placeholder="Descrição visual..."></textarea>
+            <input type="text">
         </div>
     </div>
 
     <div class="sheet-section">
-        <h3 style="color: var(--gold);">Atributos & Derivados</h3>
+        <h3>Atributos & Derivados</h3>
         <div class="stats-grid">
-            <div class="stat-box">
-                <label>FORÇA</label>
-                <input type="number" placeholder="+0">
-            </div>
-            <div class="stat-box">
-                <label>RESISTÊNCIA</label>
-                <input type="number" placeholder="+0">
-            </div>
-            <div class="stat-box">
-                <label>REFLEXOS</label>
-                <input type="number" placeholder="+0">
-            </div>
-            <div class="stat-box">
-                <label>VONTADE</label>
-                <input type="number" placeholder="+0">
-            </div>
-            <div class="stat-box">
-                <label>COSMO</label>
-                <input type="number" placeholder="+0">
-            </div>
+            <div class="stat-box"><label>FORÇA</label><input type="number" placeholder="+0"></div>
+            <div class="stat-box"><label>RESISTÊNCIA</label><input type="number" placeholder="+0"></div>
+            <div class="stat-box"><label>REFLEXOS</label><input type="number" placeholder="+0"></div>
+            <div class="stat-box"><label>VONTADE</label><input type="number" placeholder="+0"></div>
+            <div class="stat-box"><label>COSMO</label><input type="number" placeholder="+0"></div>
         </div>
         <br>
         <div class="stats-grid">
-            <div class="stat-box">
-                <label>PV Total</label>
-                <input type="number">
-            </div>
-            <div class="stat-box">
-                <label>PC Total</label>
-                <input type="number">
-            </div>
-            <div class="stat-box">
-                <label>Limite Dano</label>
-                <input type="number">
-            </div>
+            <div class="stat-box"><label>PV Total</label><input type="number"></div>
+            <div class="stat-box"><label>PV Atual</label><input type="number"></div>
+            <div class="stat-box"><label>PC Total</label><input type="number"></div>
+            <div class="stat-box"><label>PC Atual</label><input type="number"></div>
+            <div class="stat-box"><label>Limite Dano</label><input type="number"></div>
         </div>
     </div>
 
     <div class="sheet-section">
-        <h3 style="color: var(--gold);">Perícias (Bônus)</h3>
-        <div class="input-group">
+        <h3>Perícias (Bônus)</h3>
+        <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
             <input type="text" placeholder="Ex: Percepção +2">
-        </div>
-        <div class="input-group">
             <input type="text" placeholder="Ex: Acrobacia +2">
-        </div>
-        <div class="input-group">
             <input type="text" placeholder="Ex: Mitologia +2">
-        </div>
-        <div class="input-group">
+            <input type="text" placeholder="Ex: Sobrevivência +2">
+            <input type="text" placeholder="Outra...">
             <input type="text" placeholder="Outra...">
         </div>
     </div>
 
     <div class="sheet-section">
-        <h3 style="color: var(--gold);">Talentos & Habilidades</h3>
-        <textarea rows="6" placeholder="Liste seus Talentos e Técnicas aqui..."></textarea>
+        <h3>Talentos (Habilidades Passivas)</h3>
+        <textarea rows="6" placeholder="- Sentidos Avançados: ...&#10;- Aura Expandida: ..."></textarea>
     </div>
 
     <div class="sheet-section">
-        <h3 style="color: var(--gold);">Armadura</h3>
+        <h3>Estilo de Luta & Técnicas Especiais</h3>
+        <textarea rows="12" placeholder="Estilo: Artista Marcial (Nível 1)&#10;&#10;- Técnica 1: Descrição...&#10;- Técnica 2: Descrição...&#10;- Técnica 3: Descrição..."></textarea>
+    </div>
+
+    <div class="sheet-section">
+        <h3>Armadura (Cloth)</h3>
         <div class="input-group">
-            <label>PA Atual:</label>
-            <input type="text">
+            <label>PA Máximo:</label>
+            <input type="number">
+            <label style="margin-left: 20px; min-width: auto;">PA Atual:</label>
+            <input type="number">
         </div>
-        <div class="input-group">
-            <label>Bônus:</label>
-            <input type="text" placeholder="Ex: Robusta (RD 1)">
-        </div>
+        <label style="display:block; margin-top:10px;">Bônus da Armadura:</label>
+        <textarea rows="4" placeholder="Ex: Robusta (RD 1), Consciência Avançada..."></textarea>
+    </div>
+
+    <div class="sheet-section page-break">
+        <h3>Inventário & Anotações</h3>
+        <textarea rows="8" placeholder="Itens, aliados, histórico de missões..."></textarea>
     </div>
 
     <button class="print-btn" onclick="window.print()">Salvar Ficha (PDF)</button>
