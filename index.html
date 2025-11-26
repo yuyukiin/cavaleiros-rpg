@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cavaleiros de Atena - Grimoire</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+<nav>
+    <a href="#criacao">Criação</a>
+    <a href="#combate">Combate</a>
+    <a href="#cosmo">Cosmo</a>
+    <a href="#talentos">Talentos</a>
+    <a href="#armaduras">Armaduras</a>
+    <a href="#estilos">Estilos</a>
+</nav>
+
+<div class="container">
+    <header>
+        <img src="cavaleiros-do-zodiaco.png" alt="Cavaleiros do Zodíaco" class="header-image">
+        
+        <h1>Cavaleiros de Atena</h1>
+        <p style="color: var(--cosmo-cyan); letter-spacing: 2px;">MANUAL DE REGRAS UNIFICADO</p>
+    </header>
+
+    <section id="criacao">
+        <h2>1. Criação do Cavaleiro</h2>
+        <div class="card">
+            <h3>Conceito</h3>
+            <p>Defina: <strong>Nome, Constelação Guardiã, Signo e Aparência</strong>.</p>
+        </div>
+        <div class="card">
+            <h3>Escala de Poder</h3>
+            <table>
+                <tr><th>Escala</th><th>DE (Dado de Escala)</th></tr>
+                <tr><td>Ralé</td><td>4</td></tr>
+                <tr><td>Bronze</td><td>6</td></tr>
+                <tr><td>Prata</td><td>8</td></tr>
+                <tr><td>Ouro</td><td>10</td></tr>
+                <tr><td>Divino</td><td>12</td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Atributos</h3>
+            <p><strong>Modificadores Iniciais:</strong></p>
+            <ul>
+                <li>1 Atributo Destaque: <strong>+2</strong></li>
+                <li>1 Atributo Carente: <strong>0</strong></li>
+                <li>Demais Atributos: <strong>+1</strong></li>
+            </ul>
+            <hr style="border-color: #1c3a5e;">
+            <ul>
+                <li><strong>Força (FOR):</strong> Atacar, Limite de Dano e Vida Máxima.</li>
+                <li><strong>Resistência (RES):</strong> Defender e Vida Máxima.</li>
+                <li><strong>Reflexos (REF):</strong> Iniciativa e Crítico.</li>
+                <li><strong>Vontade (VON):</strong> Resistir efeitos e Desempate de poder.</li>
+                <li><strong>Cosmo (COS):</strong> Manipular cosmo e Cosmo Máximo.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Perícias</h3>
+            <p>Começa treinado em <strong>3 perícias</strong>.</p>
+            <p><em>Lista:</em> Percepção, Manipulação, Meditação, Mitologia, Empatia, Acrobacia, Sobrevivência, Forja, Estratégia.</p>
+            <p><strong>Teste (Fora de Combate):</strong> <span class="formula">1d10 + Bônus de Perícia + Atributo</span></p>
+            <p style="font-size: 0.9em; color: var(--text-dim);">Bônus: Iniciante +2, Adepto +4, Mestre +6, Divino +8.</p>
+        </div>
+        <div class="card">
+            <h3>Atributos Derivados</h3>
+            <ul>
+                <li><strong>Pontos de Vida (PV):</strong> <span class="formula">(DE / 2) + (4 x RES) + (2 x FOR)</span></li>
+                <li><strong>Pontos de Cosmo (PC):</strong> <span class="formula">DE + (4 x COS)</span></li>
+                <li><strong>Limite de Dano:</strong> <span class="formula">Ranque da Escala + FOR</span></li>
+                <li><strong>Crítico:</strong> Igual ao valor de REF.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="combate">
+        <h2>2. Regras de Combate</h2>
+        <div class="card">
+            <h3>Dinâmica</h3>
+            <p><strong>Teste de Poder:</strong> <span class="formula">DE + Atributo</span></p>
+            <p><strong>Iniciativa:</strong> Teste oposto de REF.</p>
+        </div>
+        <div class="card">
+            <h3>Fase de Ação (Seu Turno)</h3>
+            <ul>
+                <li><strong>Atacar:</strong> Teste de FOR. Dano limitado pelo <em>Limite de Dano</em>.</li>
+                <li><strong>Canalizar:</strong> Recupera 1d4 PC na manutenção. Fica <strong>Vulnerável</strong> (sem reações).</li>
+                <li><strong>Habilidade:</strong> Usar técnica do estilo.</li>
+            </ul>
+            <h3>Fase de Reação (Turno do Oponente)</h3>
+            <ul>
+                <li><strong>Defender:</strong> Teste de RES. Reduz o dano.</li>
+                <li><strong>Contra-atacar:</strong> Após receber dano. Ataca (sem reação do inimigo). Use FOR atual como Limite.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Regras Especiais</h3>
+            <ul>
+                <li><strong>Armaduras:</strong> Absorve dano no PA. Se PA=0, quebra. Ataque direto na armadura = 1/2 dano.</li>
+                <li><strong>REF em combate:</strong> 1x por rodada, substitui atributo por REF.</li>
+                <li><strong>Fadiga:</strong> Se PC = 0. Desvantagem, sem crítico.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="cosmo">
+        <h2>3. Uso de Cosmo (PC)</h2>
+        <div class="card">
+            <p>Gasto realizado <strong>antes</strong> do teste.</p>
+            <p><strong>Custo 1 PC:</strong> Invocar armadura / +1 em perícia / <strong>Queimar Cosmo</strong> (Limite Infinito).</p>
+            <p><strong>Custo 2 PC:</strong> +2 em ataque ou defesa / Negar oportunidade.</p>
+            <p><strong>Custo 3 PC:</strong> Recuperar PV / Vantagem / Imunidade a perigos.</p>
+            <p><strong>Custo 5 PC (Milagre - 1x por arco):</strong> Big Bang / Ação Extra / Reviver / Quebrar Ilusão / Imobilizar.</p>
+        </div>
+    </section>
+
+    <section id="talentos">
+        <h2>4. Talentos</h2>
+        <div class="card">
+            <p>Todo cavaleiro começa com 2 talentos.</p>
+            <ul>
+                <li><strong>Sentidos Avançados:</strong> Aumenta Percepção. Sente cosmo a 20km.</li>
+                <li><strong>Aura Expandida:</strong> Aumenta Manipulação. Doa PC para alvo.</li>
+                <li><strong>Conexão com os Antigos:</strong> Aumenta Meditação. Comunhão automática.</li>
+                <li><strong>Criado no Santuário:</strong> Aumenta Mitologia. Conhecimento divino.</li>
+                <li><strong>Coração Artístico:</strong> Aumenta Empatia. Performance para cativar.</li>
+                <li><strong>Pés Ligeiros:</strong> Aumenta Acrobacia. +1 uso de REF na defesa/rodada.</li>
+                <li><strong>Perseverança:</strong> Aumenta Sobrevivência. Se derrotado, recupera DE/2 PV (1x arco).</li>
+                <li><strong>Lemuriano:</strong> Aumenta Forja. Telecinese leve.</li>
+                <li><strong>Soldado Comandante:</strong> Aumenta Estratégia. Iniciativa auto ou evita armadilha.</li>
+                <li><strong>Mestre de Ofício:</strong> Vantagem em perícia Adepto.</li>
+                <li><strong>Escolhido:</strong> 2 Milagres por arco.</li>
+                <li><strong>Gigante:</strong> Ação para crescer (Custo X PC/Manutenção). +X FOR/RES. Inimigo não reage.</li>
+                <li><strong>Espírito Colérico:</strong> Se PV < metade, soma FOR no limite de dano.</li>
+                <li><strong>Imortal:</strong> Retorna à vida 1x por arco.</li>
+                <li><strong>Guerreiro Controlado:</strong> Luta contido (-1 escala). Luta sério (+1 escala). Divino soma 2x.</li>
+                <li><strong>Estilo Próprio:</strong> Habilidade extra. Trava 2º estilo.</li>
+                <li><strong>Recuperação Rápida:</strong> Descanso cura dobro.</li>
+                <li><strong>Mente Serena:</strong> Meditação cura dobro de Cosmo.</li>
+                <li><strong>Inspirador:</strong> Aliados ganham +1 em testes.</li>
+                <li><strong>Honrado:</strong> Ação honrosa aumenta escala temporariamente.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="armaduras">
+        <h2>5. Armaduras</h2>
+        <div class="card">
+            <table>
+                <tr><th>Escala</th><th>PA</th><th>Nvl</th></tr>
+                <tr><td>Bronze</td><td>10</td><td>1</td></tr>
+                <tr><td>Prata</td><td>15</td><td>2</td></tr>
+                <tr><td>Ouro</td><td>20</td><td>3</td></tr>
+                <tr><td>Divino</td><td>25</td><td>4</td></tr>
+            </table>
+            <h3>Bônus de Bronze (Escolha igual ao Nível)</h3>
+            <ul>
+                <li><strong>+1 em um atributo.</strong></li>
+                <li><strong>Consciência Avançada:</strong> Evita oportunidade/surpresa.</li>
+                <li><strong>Olhar Penetrante:</strong> +1 Quebrar Ilusão por arco.</li>
+                <li><strong>Chama Interior:</strong> Se PA < metade, Limite +1 (por nível).</li>
+                <li><strong>Robusta:</strong> RD 1.</li>
+                <li><strong>Leve:</strong> +1 substituição por REF na rodada.</li>
+                <li><strong>Estrutura Rígida:</strong> Ignora fadiga por 1 turno.</li>
+                <li><strong>Eco do Mestre:</strong> Refaz teste de perícia com -2.</li>
+                <li><strong>Reflexo Milagroso:</strong> Evita 1 crítico por combate.</li>
+                <li><strong>Cometa Veloz:</strong> Bônus na primeira ação da rodada.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="estilos">
+        <h2>6. Estilos de Luta</h2>
+        <p><em>Clique nas barras para abrir.</em></p>
+
+        <button class="accordion">ARTISTA MARCIAL</button>
+        <div class="panel">
+            <p><strong>NIVEL 1</strong>: Habilidade Marcial (+nível em ações) | Golpes Fortes (Custo reduz p/ 1) | Combate Veloz (REF +2x) | Cosmo Crescente (Dano recupera PC).</p>
+            <p><strong>NIVEL 2</strong>: Universalidade (Tudo é marcial) | Velocidade Letal (Limite usa REF).</p>
+            <p><strong>NIVEL 3</strong>: Invocar Fúria (+1 cumulativo) | Golpe Devastador (3 PC, Crítico Dobrado).</p>
+            <p><strong>NIVEL 4</strong>: Romper Limites (Limite + Atributo) | Golpes Rápidos (Atk Extra 3 PC).</p>
+            <p><strong>NIVEL 5</strong>: Guerreiro Perfeito (Vantagem) | Sem Limites (Passiva).</p>
+        </div>
+
+        <button class="accordion">MANIPULADOR DE FLUXO</button>
+        <div class="panel">
+            <p><strong>NIVEL 1</strong>: Defesa Aprimorada (Custo reduz p/ 1) | Bloqueio Perfeito (Dano mín 0) | Posição Controle (Crítico - RES) | Espírito Resiliente (Recupera se dano mín).</p>
+            <p><strong>NIVEL 2</strong>: Posição Blindagem (RD 1) | Aegis (Aliados usam sua RES).</p>
+            <p><strong>NIVEL 3</strong>: Fluxo Versátil (Muda posição) | Posição Cerco (Inimigo só causa dano min).</p>
+            <p><strong>NIVEL 4</strong>: Corpo de Aço (RD 1 Perm) | Posição Arame (Contra-ataca dano min).</p>
+            <p><strong>NIVEL 5</strong>: Escudo Espiritual (Defende tudo) | Defesa Perfeita (Vantagem).</p>
+        </div>
+
+        <button class="accordion">EXPLOSÃO ESTELAR</button>
+        <div class="panel">
+            <p><strong>NIVEL 1</strong>: Golpe Cósmico (Usa COS) | Evocar Elemento | Destruir Amargura (Armadura) | Cosmo Latente (Recupera +1).</p>
+            <p><strong>NIVEL 2</strong>: Escudo Cósmico (Defesa COS) | Explosão Elemental (3 PC, Dano direto).</p>
+            <p><strong>NIVEL 3</strong>: Golpe Elemental (Atk + Explosão) | Reservas (Recupera +1).</p>
+            <p><strong>NIVEL 4</strong>: Mestre (Custo reduz) | Disparo Distante (Sem contra-ataque físico).</p>
+            <p><strong>NIVEL 5</strong>: Energia Constante (Custo 0) | Big Bang (10 PC).</p>
+        </div>
+
+        <button class="accordion">EXPANSÃO CÓSMICA</button>
+        <div class="panel">
+            <p><strong>NIVEL 1</strong>: Golpe Área (Todos) | Cura (Melhorada) | Elevar (+1 Atr) | Conter (-1 Inimigo).</p>
+            <p><strong>NIVEL 2</strong>: Canalização (1d8) | FAÍSCA INTERNA (Custo +1. Elevar: +Recuperação. Conter: Atk + Debuff).</p>
+            <p><strong>NIVEL 3</strong>: Explosão Interior (Efeito 2 pts) | Capacidade Heróica (Perícia +2).</p>
+            <p><strong>NIVEL 4</strong>: Santo Encarnado (Reviver s/ milagre) | Lótus Interno (Desvantagem inimi).</p>
+            <p><strong>NIVEL 5</strong>: Supernova (Elevar: Nega reação. Conter: Irresistível) | Homem próx Deus (Vantagem barata).</p>
+        </div>
+    </section>
+</div>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") panel.style.display = "none";
+            else panel.style.display = "block";
+        });
+    }
+</script>
+
+</body>
+</html>
