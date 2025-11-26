@@ -16,6 +16,7 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .sheet-container {
@@ -32,84 +33,94 @@
             margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 1px solid var(--gold-dim);
-            /* EVITA QUEBRA DE PÁGINA NO MEIO DA SEÇÃO */
             break-inside: avoid;
-            page-break-inside: avoid;
         }
 
         h1, h3 { color: var(--gold); margin-top: 0; }
         label { color: var(--cosmo-cyan); font-weight: bold; margin-right: 5px; }
         p.subtitle { color: var(--cosmo-cyan); margin-top: -10px; margin-bottom: 30px; }
 
-        /* Inputs na tela */
+        /* Inputs e Caixas */
+        .editable-box {
+            width: 100%; min-height: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--gold-dim); border-radius: 4px;
+            color: #ffffff; padding: 10px; font-size: 1rem;
+            margin-top: 5px; line-height: 1.5; outline: none;
+            white-space: pre-wrap; overflow: hidden;
+        }
+        .editable-box:focus { border-color: var(--cosmo-cyan); background-color: rgba(0, 234, 255, 0.1); }
+
         .input-group { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
-        
         input[type="text"], input[type="number"] {
             background: transparent; border: none;
             border-bottom: 2px solid var(--gold-dim);
             color: #ffffff; padding: 5px; font-family: inherit;
             font-size: 1rem; flex-grow: 1; margin-right: 15px;
         }
+        input:focus { outline: none; border-color: var(--cosmo-cyan); background-color: rgba(0, 234, 255, 0.1); }
 
-        textarea {
-            width: 100%; background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--gold-dim); border-radius: 4px;
-            color: #ffffff; padding: 10px; font-family: inherit;
-            font-size: 1rem; margin-top: 5px; resize: vertical;
-        }
-
-        input:focus, textarea:focus { outline: none; border-color: var(--cosmo-cyan); background-color: rgba(0, 234, 255, 0.1); }
-
-        /* Grid de Atributos */
+        /* Grid */
         .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; text-align: center; }
         .stat-box { border: 1px solid var(--gold-dim); padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); }
         .stat-box input { text-align: center; font-size: 1.3rem; width: 100%; border-bottom: none; margin: 0; }
         .stat-box label { display: block; margin-bottom: 5px; font-size: 0.85rem; }
 
-        .print-btn { display: block; width: 100%; padding: 15px; background: var(--gold); color: var(--bg-deep); font-weight: bold; border: none; cursor: pointer; font-size: 1.2rem; margin-top: 20px; text-transform: uppercase; border-radius: 4px; }
-        .print-btn:hover { background: #e6c200; }
+        /* --- BOTÕES DE AÇÃO --- */
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
 
-        /* --- MODO DE IMPRESSÃO ESCURO TOTAL (A MÁGICA) --- */
+        .btn {
+            flex: 1;
+            padding: 15px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .btn-print { background: var(--gold); color: var(--bg-deep); }
+        .btn-print:hover { background: #e6c200; }
+
+        .btn-save { background: var(--cosmo-cyan); color: var(--bg-deep); }
+        .btn-save:hover { background: #00bcd4; }
+
+        .btn-load { background: #333; color: white; border: 1px solid var(--gold-dim); }
+        .btn-load:hover { background: #444; }
+
+        /* Esconde input de arquivo */
+        #fileInput { display: none; }
+
+        /* --- MODO DE IMPRESSÃO (ESCURO TOTAL) --- */
         @media print {
-            /* 1. ZERA AS MARGENS DA IMPRESSORA PARA NÃO CORTAR */
-            @page {
-                margin: 0mm; /* Essencial para ocupar a folha toda */
-                size: A4 portrait;
-            }
-
-            /* 2. Esconde botões */
-            .print-btn, nav { display: none !important; }
+            @page { margin: 0mm; size: A4 portrait; }
+            .action-bar, nav { display: none !important; }
             
-            /* 3. Força o fundo escuro e cores exatas */
             html, body {
-                height: 100%;
-                width: 100%;
-                margin: 0 !important;
-                padding: 0 !important;
-                background-color: #020b14 !important; /* Fundo preto total */
-                -webkit-print-color-adjust: exact !important; /* Chrome/Edge força cor */
-                print-color-adjust: exact !important; /* Firefox força cor */
+                margin: 0 !important; padding: 0 !important;
+                background-color: #020b14 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
-            /* 4. Ajusta o container da ficha para preencher a folha sem bordas extras */
             .sheet-container {
-                width: 100% !important;
-                max-width: none !important;
-                margin: 0 !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-radius: 0 !important;
+                width: 100% !important; max-width: none !important;
+                margin: 0 !important; border: none !important;
+                box-shadow: none !important; border-radius: 0 !important;
                 background-color: rgba(10, 21, 37, 1) !important;
-                padding: 20px 40px !important; /* Margem interna para o texto não colar na borda do papel */
-                box-sizing: border-box;
+                padding: 20px 40px !important;
             }
 
-            /* 5. Garante que as cores de texto se mantenham */
             h1, h3, label, p.subtitle { color: inherit !important; }
-            input, textarea { color: #ffffff !important; border-color: #b8860b !important; }
-            
-             /* 6. Evita quebrar seções no meio */
-            .sheet-section { break-inside: avoid; }
+            input, .editable-box { color: #ffffff !important; border-color: #b8860b !important; }
+            .editable-box { overflow: visible !important; height: auto !important; white-space: pre-wrap !important; }
         }
     </style>
 </head>
@@ -128,8 +139,8 @@
     <div class="sheet-section">
         <h3>Dados Pessoais</h3>
         <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div style="display: flex; align-items: center;"><label>Nome:</label><input type="text"></div>
-            <div style="display: flex; align-items: center;"><label>Jogador:</label><input type="text"></div>
+            <div style="display: flex; align-items: center;"><label>Nome:</label><input type="text" id="nome"></div>
+            <div style="display: flex; align-items: center;"><label>Jogador:</label><input type="text" id="jogador"></div>
         </div>
         <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div style="display: flex; align-items: center;"><label>Constelação:</label><input type="text"></div>
@@ -139,7 +150,8 @@
             <div style="display: flex; align-items: center;"><label>Escala:</label><input type="text"></div>
             <div style="display: flex; align-items: center;"><label>XP/Nível:</label><input type="text"></div>
         </div>
-        <div style="display: flex; align-items: center; margin-top: 10px;"><label>Aparência:</label><input type="text"></div>
+        <label style="display:block; margin-top: 15px;">Aparência:</label>
+        <div class="editable-box" contenteditable="true" style="min-height: 60px;"></div>
     </div>
 
     <div class="sheet-section">
@@ -175,12 +187,12 @@
 
     <div class="sheet-section">
         <h3>Talentos (Passivos)</h3>
-        <textarea rows="5"></textarea>
+        <div class="editable-box" contenteditable="true" style="min-height: 100px;"></div>
     </div>
 
     <div class="sheet-section">
         <h3>Estilo de Luta & Técnicas</h3>
-        <textarea rows="10"></textarea>
+        <div class="editable-box" contenteditable="true" style="min-height: 200px;"></div>
     </div>
 
     <div class="sheet-section">
@@ -190,16 +202,81 @@
             <div style="display: flex; align-items: center;"><label>PA Atual:</label><input type="number"></div>
         </div>
         <label style="display:block; margin-top:10px;">Bônus da Armadura:</label>
-        <textarea rows="4"></textarea>
+        <div class="editable-box" contenteditable="true" style="min-height: 80px;"></div>
     </div>
 
     <div class="sheet-section">
         <h3>Inventário & Anotações</h3>
-        <textarea rows="6"></textarea>
+        <div class="editable-box" contenteditable="true" style="min-height: 150px;"></div>
     </div>
 
-    <button class="print-btn" onclick="window.print()">Salvar Ficha (PDF)</button>
+    <div class="action-bar">
+        <button class="btn btn-save" onclick="saveSheet()">💾 Salvar Dados</button>
+        
+        <input type="file" id="fileInput" accept=".json" onchange="loadSheet(this)">
+        <button class="btn btn-load" onclick="document.getElementById('fileInput').click()">📂 Carregar Dados</button>
+        
+        <button class="btn btn-print" onclick="window.print()">🖨️ Gerar PDF</button>
+    </div>
 </div>
+
+<script>
+    // FUNÇÃO SALVAR
+    function saveSheet() {
+        const data = {};
+        
+        // Salva Inputs normais
+        document.querySelectorAll('input[type="text"], input[type="number"]').forEach((el, index) => {
+            data['input_' + index] = el.value;
+        });
+
+        // Salva Caixas Expansíveis
+        document.querySelectorAll('.editable-box').forEach((el, index) => {
+            data['box_' + index] = el.innerHTML;
+        });
+
+        // Gera o nome do arquivo baseado no nome do personagem
+        const nomeChar = document.getElementById('nome').value || 'cavaleiro';
+        const fileName = `ficha_${nomeChar}.json`;
+
+        // Cria o download
+        const blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    }
+
+    // FUNÇÃO CARREGAR
+    function loadSheet(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+
+                // Preenche Inputs
+                document.querySelectorAll('input[type="text"], input[type="number"]').forEach((el, index) => {
+                    if (data['input_' + index] !== undefined) el.value = data['input_' + index];
+                });
+
+                // Preenche Caixas
+                document.querySelectorAll('.editable-box').forEach((el, index) => {
+                    if (data['box_' + index] !== undefined) el.innerHTML = data['box_' + index];
+                });
+
+                alert('Ficha carregada com sucesso! Cosmo elevado!');
+            } catch (err) {
+                alert('Erro ao ler o arquivo. Verifique se é um JSON válido.');
+            }
+        };
+        reader.readAsText(file);
+        // Limpa o input para permitir carregar o mesmo arquivo de novo se precisar
+        input.value = ''; 
+    }
+</script>
 
 </body>
 </html>
