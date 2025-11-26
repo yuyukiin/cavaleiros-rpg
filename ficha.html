@@ -9,7 +9,12 @@
     <link rel="shortcut icon" href="favicon.ico?v=3" type="image/x-icon">
     
     <style>
-        /* Estilos específicos da Ficha */
+        /* --- ESTILOS GERAIS DA FICHA --- */
+        body {
+            background-color: #020b14; /* Garante fundo escuro */
+            color: #e0f7fa;
+        }
+
         .sheet-container {
             max-width: 800px;
             margin: 0 auto;
@@ -39,12 +44,11 @@
             min-width: 100px;
         }
 
-        /* Campos de texto estilo "linha" */
         input[type="text"], input[type="number"], textarea {
             background: transparent;
             border: none;
             border-bottom: 2px solid var(--gold-dim);
-            color: var(--text-main);
+            color: #ffffff; /* Texto branco puro para contraste */
             padding: 5px;
             font-family: inherit;
             font-size: 1rem;
@@ -55,7 +59,7 @@
         input:focus, textarea:focus {
             outline: none;
             border-bottom-color: var(--cosmo-cyan);
-            background-color: rgba(0, 234, 255, 0.05);
+            background-color: rgba(0, 234, 255, 0.1);
         }
 
         /* Grid para Atributos */
@@ -70,6 +74,7 @@
             border: 1px solid var(--gold-dim);
             padding: 10px;
             border-radius: 8px;
+            background: rgba(0,0,0,0.2);
         }
 
         .stat-box input {
@@ -78,7 +83,6 @@
             width: 100%;
         }
 
-        /* Botão de Imprimir */
         .print-btn {
             display: block;
             width: 100%;
@@ -97,13 +101,40 @@
             background: #e6c200;
         }
 
-        /* Esconder botão na hora de salvar PDF */
+        /* --- CONFIGURAÇÃO DE IMPRESSÃO (A MÁGICA) --- */
         @media print {
-            .print-btn, nav { display: none; }
-            body { background: white; color: black; }
-            .sheet-container { border: 2px solid black; color: black; background: white; }
-            input, textarea { border-bottom: 1px solid black; color: black; }
-            label { color: black; }
+            /* 1. Esconde botões e menus */
+            .print-btn, nav { display: none !important; }
+
+            /* 2. FORÇA O NAVEGADOR A USAR CORES DE FUNDO */
+            body {
+                background-color: #020b14 !important;
+                -webkit-print-color-adjust: exact !important; /* Chrome/Edge */
+                print-color-adjust: exact !important; /* Firefox */
+                color: white !important;
+            }
+
+            /* 3. Mantém o estilo do container */
+            .sheet-container {
+                border: 2px solid #ffd700 !important;
+                background-color: #0a1525 !important;
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* 4. Garante que textos e linhas fiquem visíveis */
+            input, textarea {
+                color: white !important;
+                border-bottom: 2px solid #b8860b !important;
+            }
+
+            label { color: #00eaff !important; }
+            h1, h3 { color: #ffd700 !important; }
+            
+            /* Remove margins extras da página */
+            @page { margin: 0.5cm; }
         }
     </style>
 </head>
