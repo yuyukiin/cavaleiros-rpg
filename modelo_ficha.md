@@ -1,73 +1,85 @@
-# Ficha de Personagem: Yusho de Dragão
+# Ficha de Personagem: Cavaleiros de Atena
 
 ## 👤 Conceito
 | Campo | Informação |
 | :--- | :--- |
-| **Nome** | Yusho |
-| **Constelação** | Dragão (Draco) |
-| **Signo** | Escorpião |
-| **Aparência** | Jovem de estatura média, cabelos longos e negros que caem pelas costas, olhos penetrantes e uma postura inabalável. Possui uma tatuagem de dragão nas costas que brilha quando ele eleva seu cosmo ao máximo. |
+| **Nome** | ____________________ |
+| **Constelação** | ____________________ |
+| **Signo** | ____________________ |
+| **Jogador** | ____________________ |
+| **Aparência** | (Descreva aqui brevemente) |
 
 ---
 
 ## ⚡ Escala de Poder
-* **Escala Atual:** [X] Bronze
-* **Dado de Escala (DE):** d6
-* **Ranque da Escala:** 1
+* **Escala Atual:** [ ] Ralé | [ ] Bronze | [ ] Prata | [ ] Ouro | [ ] Divino
+* **Dado de Escala (DE):** d__
+* **Ranque da Escala:** __ (Bronze=1, Prata=2, Ouro=3, Divino=4)
 
 ---
 
 ## 📊 Atributos & Derivados
 
 ### Atributos Principais (Modificadores)
-*Nota: Foquei em RES para representar o Escudo do Dragão, e deixei REF 0 pois ele é um lutador que bloqueia, não que esquiva.*
+*Distribuição Inicial: Um +2, Um 0, Três +1*
 
-| Atributo | Modificador |
-| :---: | :---: |
-| **FOR**ça | **+1** |
-| **RES**istência| **+2** (Destaque) |
-| **REF**lexos | **0** (Carente) |
-| **VON**tade | **+1** |
-| **COS**mo | **+1** |
+| Atributo | Modificador | Função Principal |
+| :---: | :---: | :--- |
+| **FOR**ça | **+__** | Ataque, Limite de Dano, Vida |
+| **RES**istência| **+__** | Defesa, Vida |
+| **REF**lexos | **+__** | Iniciativa, Crítico, Esquiva |
+| **VON**tade | **+__** | Resistência mental, Desempate |
+| **COS**mo | **+__** | Cosmo Máximo, Técnicas |
 
 ### Estatísticas Derivadas
-| Estatística | Valor Total | Cálculos |
+| Estatística | Valor Total | Fórmula |
 | :--- | :---: | :--- |
-| **Pontos de Vida (PV)** | **13 / 13** | (3) + (8) + (2) |
-| **Pontos de Cosmo (PC)**| **10 / 10** | 6 + (4) |
-| **Limite de Dano** | **2** | 1 (Bronze) + 1 (FOR) |
-| **Valor de Crítico** | **0** | REF 0 |
-| **Iniciativa** | **0** | REF 0 |
+| **Pontos de Vida (PV)** | **__ / __** | (DE/2) + (4xRES) + (2xFOR) |
+| **Pontos de Cosmo (PC)**| **__ / __** | DE + (4xCOS) |
+| **Limite de Dano** | **__** | Ranque + FOR |
+| **Valor de Crítico** | **__** | Igual ao REF |
+| **Iniciativa** | **+__** | Igual ao REF |
 
 ---
 
 ## 🧠 Perícias
-*Grau Iniciante (+2)*
+*Bônus de Treino: Iniciante (+2) | Adepto (+4) | Mestre (+6) | Divino (+8)*
+*Começa com 3 treinadas (Iniciante)*
 
-* [X] Mitologia: +2 (Conhecimento sobre as lendas antigas e sua própria armadura)
-* [X] Percepção: +2 (Instinto de guerreiro)
-* [X] Sobrevivência: +2 (Treinado nas condições adversas dos Cinco Picos Antigos)
+* [ ] Acrobacia: +__
+* [ ] Empatia: +__
+* [ ] Estratégia: +__
+* [ ] Forja: +__
+* [ ] Manipulação: +__
+* [ ] Meditação: +__
+* [ ] Mitologia: +__
+* [ ] Percepção: +__
+* [ ] Sobrevivência: +__
 
 ---
 
 ## 🛡️ Armadura (Cloth)
-* **Escala da Armadura:** Bronze
-* **Pontos de Armadura (PA):** 10 / 10
-* **Bônus da Armadura (Nível 1):**
-    1. **Robusta:** Recebe RD 1 (Resistência a Dano). *Representa o Escudo do Dragão.*
+* **Escala da Armadura:** ________________
+* **Pontos de Armadura (PA):** __ / __
+* **Bônus da Armadura:**
+    1. __________________________________________________
+    *(Quantidade de bônus = Nível da armadura)*
 
 ---
 
 ## 🌟 Talentos & Habilidades
 
-### Talentos
-1. **Perseverança:** (Aumenta Sobrevivência). Caso seja derrotado, recupera DE/2 (3 PV) uma vez por arco. *O Dragão sempre se levanta.*
-2. **Espírito Colérico:** Caso seus PV desçam até metade (6 ou menos), some sua FOR (+1) no seu limite de dano. *O poder da Cólera aumenta na dificuldade.*
+### Talentos (Começa com 2)
+1. **Nome:** ____________________
+   *Efeito:* __________________________________________________
+
+2. **Nome:** ____________________
+   *Efeito:* __________________________________________________
 
 ### Estilo de Luta Principal
-* **Estilo:** Explosão Estelar (Nível: 1)
-*(Escolhido para representar os golpes de energia pura como o Cólera do Dragão)*
+* **Estilo:** ____________________ (Nível: __ )
 
-**Técnicas/Habilidades Adquiridas (Nível 1):**
-* **Golpe Cósmico:** (Custo 1 PC). O ataque usa COS em vez de FOR para teste e limite. O dano se torna Cósmico. *Esta é a base para o "Cólera do Dragão".*
-* **Cosmo Latente:** Sempre que gastar 2PC ou mais na fase de ação, recupera 1 PC adicional na fase de manutenção.
+**Técnicas/Habilidades Adquiridas:**
+* (Nvl 1) ____________________
+* (Nvl 1) ____________________
+* (Nvl __) ____________________
