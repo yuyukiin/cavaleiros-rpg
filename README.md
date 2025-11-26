@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🛡️ Cavaleiros de Atena: Sistema de RPG Unificado
 
 Um sistema de RPG de mesa original baseado no universo de **Os Cavaleiros do Zodíaco** (Saint Seiya), focado em gerenciamento de Cosmo, combate estratégico e narrativas épicas.
